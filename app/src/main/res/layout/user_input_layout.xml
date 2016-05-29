@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/abcdef"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.rj.dummylayout.MainActivity">
+
+  <LinearLayout
+      android:id="@+id/bottom_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4dp"
+      android:background="#ffffff"
+      android:orientation="horizontal"
+      android:visibility="visible"
+      android:weightSum="6">
+
+    <EditText
+        android:id="@+id/chat_message_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:background="#ffffff"
+        android:hint="Enter Items to Explore"
+        android:inputType="textMultiLine|textShortMessage"
+        android:maxLines="2"
+        android:paddingBottom="18dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="18dp"
+        android:scrollbars="vertical"
+        android:textColorHint="#cdcdcd"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/chat_message_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="Send"
+        android:textAllCaps="false"
+        android:textColor="#9b9b9b"
+        android:textSize="16sp"/>
+
+  </LinearLayout>
+
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/bottom_container">
+
+    <LinearLayout
+        android:id="@+id/container_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
+
+  </ScrollView>
+
+
+  <Button
+      android:id="@+id/check_feed"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_alignParentBottom="true"
+      android:background="#1fc055"
+      android:text="Check Feed"/>
+
+
+</RelativeLayout>

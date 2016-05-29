@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
+import com.example.rj.feedexplorer.userinput.HomeFragment;
+
 public class MainActivity extends FragmentActivity implements IFragmentController {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    performOperation(IFragmentController.OPEN_HOME_FRAGMENT, false);
   }
 
 
@@ -30,7 +33,7 @@ public class MainActivity extends FragmentActivity implements IFragmentControlle
 
 
   private void hanleHomeFragment(Object input) {
-    replaceFragmentInDefaultLayout((Boolean) input, new HomeFragment());
+    replaceFragmentInDefaultLayout((Boolean) input, HomeFragment.newInstance());
   }
 
   private void replaceFragmentInDefaultLayout(Boolean addtobackStack, BaseFragment fragment) {
