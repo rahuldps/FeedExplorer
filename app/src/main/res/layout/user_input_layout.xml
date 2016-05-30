@@ -9,10 +9,17 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.rj.dummylayout.MainActivity">
 
+
+  <include
+      android:id="@+id/toolbar"
+      layout="@layout/layout_toolbar"/>
+
+
   <LinearLayout
       android:id="@+id/bottom_container"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_below="@id/toolbar"
       android:layout_marginTop="4dp"
       android:background="#ffffff"
       android:orientation="horizontal"
@@ -25,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:background="#ffffff"
-        android:hint="Enter Items to Explore"
+        android:hint="Enter Words and Click on Add"
         android:inputType="textMultiLine|textShortMessage"
         android:maxLines="2"
         android:paddingBottom="18dp"
@@ -42,9 +49,9 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:background="?android:attr/selectableItemBackground"
-        android:text="Send"
+        android:text="Add"
         android:textAllCaps="false"
-        android:textColor="#9b9b9b"
+        android:textColor="#000000"
         android:textSize="16sp"/>
 
   </LinearLayout>
@@ -65,13 +72,13 @@
   </ScrollView>
 
 
-  <Button
-      android:id="@+id/check_feed"
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_alignParentBottom="true"
-      android:background="#1fc055"
-      android:text="Check Feed"/>
+    <Button
+    android:id="@+id/check_feed"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentBottom="true"
+    android:background="#1fc055"
+    android:text="Tap To Check Feed"/>
 
 
 </RelativeLayout>

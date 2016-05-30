@@ -2,14 +2,14 @@ package com.example.rj.feedexplorer;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Rj on 5/29/16.
  */
 public class BaseFragment extends Fragment {
 
-  protected FragmentActivity activity;
+  protected AppCompatActivity activity;
 
   private IFragmentController fragmentControllerActivity;
 
@@ -17,7 +17,7 @@ public class BaseFragment extends Fragment {
   public void onAttach(Activity activity) {
     super.onAttach(activity);
     fragmentControllerActivity = (IFragmentController) activity;
-    this.activity = (FragmentActivity) activity;
+    this.activity = (AppCompatActivity) activity;
   }
 
   public IFragmentController getFragmentController() {
@@ -25,6 +25,10 @@ public class BaseFragment extends Fragment {
       fragmentControllerActivity = (IFragmentController) getActivity();
     }
     return fragmentControllerActivity;
+  }
+
+  public AppCompatActivity getActivityReference() {
+    return activity;
   }
 
   public void onDetach() {

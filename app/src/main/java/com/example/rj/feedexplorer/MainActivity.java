@@ -1,12 +1,16 @@
 package com.example.rj.feedexplorer;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 
+import com.example.rj.feedexplorer.feedslistview.FeedExplorerFragment;
 import com.example.rj.feedexplorer.userinput.HomeFragment;
 
-public class MainActivity extends FragmentActivity implements IFragmentController {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements IFragmentController {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +28,16 @@ public class MainActivity extends FragmentActivity implements IFragmentControlle
 
         break;
       case IFragmentController.OPEN_FEED_EXPLORER_FRAGMENT:
+        handleFeedListViewFragment(input);
 
         break;
 
     }
 
+  }
+
+  private void handleFeedListViewFragment(Object input) {
+    replaceFragmentInDefaultLayout(true, FeedExplorerFragment.newInstance((List<String>) input));
   }
 
 
@@ -42,5 +51,10 @@ public class MainActivity extends FragmentActivity implements IFragmentControlle
     if (addtobackStack)
       fragmentTransaction.addToBackStack(fragment.getName());
     fragmentTransaction.commit();
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    return super.onCreateOptionsMenu(menu);
   }
 }

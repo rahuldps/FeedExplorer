@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.rj.feedexplorer.R;
+import com.example.rj.feedexplorer.utils.SharedPrefsManager;
 import com.example.rj.feedexplorer.utils.Utils;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class TagBasedLayout implements View.OnClickListener {
     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     layoutParams
-        .setMargins(0, context.getResources().getDimensionPixelSize(R.dimen.dimen_6dp)
+        .setMargins(0, context.getResources().getDimensionPixelSize(R.dimen.dimen_20dp)
             , 0,
             0);
     checkBoxLayout.setLayoutParams(layoutParams);
@@ -124,6 +125,7 @@ public class TagBasedLayout implements View.OnClickListener {
     checkBoxLayout.removeAllViews();
     populateTagBasedLayout(this.checkBoxLayout,
         R.layout.tagbased_checkbox, this);
+    SharedPrefsManager.getInstance().setCollection("string", set);
     Log.w("setcount", " " + set.size() + " " + bool);
   }
 
