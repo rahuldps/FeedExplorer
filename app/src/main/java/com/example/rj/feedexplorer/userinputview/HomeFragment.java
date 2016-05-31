@@ -32,7 +32,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
   private TagBasedLayout tagBasedBox;
   private EditText editText;
-  private Button addWords;
+  private Button addWordsButton;
   private LinearLayout linearLayout;
   private List<String> inputList = new ArrayList<>();
   private Toolbar toolbar;
@@ -59,9 +59,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     linearLayout = (LinearLayout) view.findViewById(R.id.container_view);
     linearLayout.addView(tagBasedBox.getView());
     editText = (EditText) view.findViewById(R.id.add_words_edit_text);
-    addWords = (Button) view.findViewById(R.id.add_words);
+    addWordsButton = (Button) view.findViewById(R.id.add_words);
     setHasOptionsMenu(true);
-    addWords.setOnClickListener(this);
+    addWordsButton.setOnClickListener(this);
     Button button = (Button) view.findViewById(R.id.check_feed);
     button.setOnClickListener(this);
     return view;
@@ -105,10 +105,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
   }
 
   private void handleWordAddition() {
-    if (!inputList.contains(editText.getText().toString())) {
-      if (editText.getText().toString().length() > 0) {
-        inputList.add(editText.getText().toString());
-        tagBasedBox.addItem(editText.getText() + "");
+    String inputString = editText.getText().toString().trim();
+    if (!inputList.contains(inputString)) {
+      if (inputString.length() > 0) {
+        inputList.add(inputString);
+        tagBasedBox.addItem(inputString);
         SharedPrefsManager.getInstance().setCollection(Constants.PREFERENCE_KEY, inputList);
         editText.setText("");
       } else {

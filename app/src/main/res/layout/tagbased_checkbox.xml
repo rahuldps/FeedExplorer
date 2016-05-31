@@ -19,8 +19,8 @@
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/dimen_16dp"
       android:layout_marginRight="@dimen/dimen_16dp"
-      android:textColor="#ffffff"
-      android:textSize="16sp"
+      android:textColor="@color/white"
+      android:textSize="@dimen/fontsize_16"
       />
 
   <ImageView

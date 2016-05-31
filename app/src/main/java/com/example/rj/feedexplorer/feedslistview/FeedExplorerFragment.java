@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.rj.feedexplorer.BaseFragment;
 import com.example.rj.feedexplorer.R;
 import com.example.rj.feedexplorer.feedslistview.models.BaseCardModel;
+import com.example.rj.feedexplorer.feedslistview.models.DataModel;
 import com.example.rj.feedexplorer.feedslistview.models.HeadingModel;
 import com.example.rj.feedexplorer.feedslistview.models.ResponseDataModel;
 import com.example.rj.feedexplorer.utils.Constants;
@@ -69,6 +70,7 @@ public class FeedExplorerFragment extends BaseFragment implements FeedFetcherAsy
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = LayoutInflater.from(getContext()).inflate(R.layout.feed_view_layout, null);
     setupToolBar(view);
+    setHasOptionsMenu(true);
     retryFooterContainer = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.retry_footer_view, null);
     retryFooterbutton = (Button) retryFooterContainer.findViewById(R.id.retry_container);
     retryFooterbutton.setOnClickListener(this);
@@ -77,10 +79,10 @@ public class FeedExplorerFragment extends BaseFragment implements FeedFetcherAsy
     retryButton.setOnClickListener(this);
     baseCardModels = new ArrayList<>();
     listView = (ListView) view.findViewById(R.id.feed_list);
-    setFooterView();
-    setHasOptionsMenu(true);
-    listViewAdapter = new ListViewAdapter(getContext(), baseCardModels, this);
     emptyView = (TextView) view.findViewById(R.id.emptyView);
+    listView.setEmptyView(emptyView);
+    setFooterView();
+    listViewAdapter = new ListViewAdapter(getContext(), baseCardModels, this);
     listView.setAdapter(listViewAdapter);
     if (baseCardModels.size() == 0) {
       fetchFeed();
@@ -108,9 +110,10 @@ public class FeedExplorerFragment extends BaseFragment implements FeedFetcherAsy
 
   @Override
   public void onSuccess(ResponseDataModel responseDataModel) {
-    emptyView.setVisibility(View.GONE);
     List<BaseCardModel> baseModels = convertDataIntoMeaningFulModels(responseDataModel);
-    baseCardModels.addAll(baseModels);
+    if (responseDataModel.getResponseData().getEntries().size() > 0) {
+      baseCardModels.addAll(baseModels);
+    }
     if (progressFooterView != null) {
       listView.removeFooterView(progressFooterView);
     }
@@ -119,12 +122,13 @@ public class FeedExplorerFragment extends BaseFragment implements FeedFetcherAsy
   }
 
   private List<BaseCardModel> convertDataIntoMeaningFulModels(ResponseDataModel responseDataModel) {
+    DataModel dataModel = responseDataModel.getResponseData();
     List<BaseCardModel> baseCardModels = new ArrayList<>();
     HeadingModel headingModel = new HeadingModel();
-    headingModel.setTitle(responseDataModel.getResponseData().getQuery());
+    headingModel.setTitle(dataModel.getQuery());
     baseCardModels.add(headingModel);
-    for (int count = 0; count < responseDataModel.getResponseData().getEntries().size(); count++) {
-      baseCardModels.add(responseDataModel.getResponseData().getEntries().get(count));
+    for (int count = 0; count < dataModel.getEntries().size(); count++) {
+      baseCardModels.add(dataModel.getEntries().get(count));
     }
     return baseCardModels;
   }
@@ -139,8 +143,6 @@ public class FeedExplorerFragment extends BaseFragment implements FeedFetcherAsy
     }
     if (baseCardModels.size() == 0) {
       retryLayout.setVisibility(View.VISIBLE);
-      emptyView.setVisibility(View.GONE);
-      listView.setVisibility(View.GONE);
 
     }
   }
@@ -181,7 +183,7 @@ public class FeedExplorerFragment extends BaseFragment implements FeedFetcherAsy
       case R.id.retry_container:
       case R.id.retry_button:
         fetchFeed();
-        listView.setVisibility(View.VISIBLE);
+        retryLayout.setVisibility(View.GONE);
         if (retryFooterContainer != null) {
           listView.removeFooterView(retryFooterContainer);
         }

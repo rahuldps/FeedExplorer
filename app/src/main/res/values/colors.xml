@@ -6,4 +6,6 @@
   <color name="white">#ffffff</color>
   <color name="lime">#00FF00</color>
   <color name="filters_bg">#F4F4F4</color>
+  <color name="black">#000000</color>
+  <color name="purpleblue">#7323dc</color>
 </resources>

@@ -4,15 +4,15 @@
               android:layout_height="100dp"
               android:gravity="center"
               android:orientation="vertical"
-              android:paddingBottom="17dp"
-              android:paddingTop="17dp">
+              android:paddingBottom="@dimen/dimen_17dp"
+              android:paddingTop="@dimen/dimen_17dp">
 
   <Button
       android:id="@+id/retry_container"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:background="@color/lime"
+      android:layout_width="@dimen/dimen_100dp"
+      android:layout_height="@dimen/dimen_50dp"
+      android:background="@color/purpleblue"
       android:text="Retry"
-      android:textColor="#000000"/>
+      android:textColor="@color/white"/>
 
 </LinearLayout>
