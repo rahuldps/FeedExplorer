@@ -1,6 +1,6 @@
 package com.example.rj.feedexplorer.feedslistview.models;
 
-import com.example.rj.feedexplorer.feedslistview.FeedRowTypes;
+import com.example.rj.feedexplorer.feedslistview.core.FeedRowTypes;
 
 /**
  * Created by Rj on 5/30/16.

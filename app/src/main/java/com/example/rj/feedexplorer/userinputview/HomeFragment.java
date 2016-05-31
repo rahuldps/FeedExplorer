@@ -1,10 +1,9 @@
-package com.example.rj.feedexplorer.userinput;
+package com.example.rj.feedexplorer.userinputview;
 
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,8 @@ import android.widget.Toast;
 import com.example.rj.feedexplorer.BaseFragment;
 import com.example.rj.feedexplorer.IFragmentController;
 import com.example.rj.feedexplorer.R;
-import com.example.rj.feedexplorer.userinput.view.TagBasedLayout;
+import com.example.rj.feedexplorer.userinputview.view.TagBasedLayout;
+import com.example.rj.feedexplorer.utils.Constants;
 import com.example.rj.feedexplorer.utils.SharedPrefsManager;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,9 +32,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
   private TagBasedLayout tagBasedBox;
   private EditText editText;
-  private Button submit;
+  private Button addWords;
   private LinearLayout linearLayout;
-  private List<String> set = new ArrayList<>();
+  private List<String> inputList = new ArrayList<>();
   private Toolbar toolbar;
 
   static Type serviceListType = new TypeToken<List<String>>() {
@@ -51,25 +51,29 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = LayoutInflater.from(getContext()).inflate(R.layout.user_input_layout, null);
-    toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-    getActivityReference().setSupportActionBar(toolbar);
-    getActivityReference().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getActivityReference().getSupportActionBar().setTitle("Add Keywords to Explore");
-    toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+    setupToolBar(view);
     if (getRecentSearchItems() != null) {
-      set = getRecentSearchItems();
+      inputList = getRecentSearchItems();
     }
-    tagBasedBox = new TagBasedLayout(getContext(), set);
+    tagBasedBox = new TagBasedLayout(getContext(), inputList);
     linearLayout = (LinearLayout) view.findViewById(R.id.container_view);
     linearLayout.addView(tagBasedBox.getView());
-    editText = (EditText) view.findViewById(R.id.chat_message_edit);
-    submit = (Button) view.findViewById(R.id.chat_message_send);
+    editText = (EditText) view.findViewById(R.id.add_words_edit_text);
+    addWords = (Button) view.findViewById(R.id.add_words);
     setHasOptionsMenu(true);
-    submit.setOnClickListener(this);
+    addWords.setOnClickListener(this);
     Button button = (Button) view.findViewById(R.id.check_feed);
     button.setOnClickListener(this);
     return view;
 
+  }
+
+  private void setupToolBar(View view) {
+    toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+    getActivityReference().setSupportActionBar(toolbar);
+    getActivityReference().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getActivityReference().getSupportActionBar().setTitle(getResources().getString(R.string.add_words));
+    toolbar.setTitleTextColor(getResources().getColor(R.color.white));
   }
 
 
@@ -86,36 +90,38 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
-      case R.id.chat_message_send:
-        if (!set.contains(editText.getText().toString())) {
-          if (editText.getText().toString().length() > 0) {
-            set.add(editText.getText().toString());
-            tagBasedBox.addItem(editText.getText() + "");
-            SharedPrefsManager.getInstance().setCollection("string", set);
-            editText.setText("");
-          } else {
-            Toast.makeText(getContext(), "Empty String Not Allowed", Toast.LENGTH_LONG).show();
-          }
-        } else {
-          Toast.makeText(getContext(), "Show Something New", Toast.LENGTH_LONG).show();
-        }
-
+      case R.id.add_words:
+        handleWordAddition();
         break;
       case R.id.check_feed:
-        if (set.size() > 0) {
-          Log.w("set size check", " " + set.get(0));
-          getFragmentController().performOperation(IFragmentController.OPEN_FEED_EXPLORER_FRAGMENT, set);
+        if (inputList.size() > 0) {
+          getFragmentController().performOperation(IFragmentController.OPEN_FEED_EXPLORER_FRAGMENT, inputList);
         } else {
-          Toast.makeText(getContext(), "Enter atleast one item", Toast.LENGTH_SHORT).show();
+          Toast.makeText(getContext(), getResources().getString(R.string.enter_word), Toast.LENGTH_SHORT).show();
         }
         break;
 
     }
   }
 
+  private void handleWordAddition() {
+    if (!inputList.contains(editText.getText().toString())) {
+      if (editText.getText().toString().length() > 0) {
+        inputList.add(editText.getText().toString());
+        tagBasedBox.addItem(editText.getText() + "");
+        SharedPrefsManager.getInstance().setCollection(Constants.PREFERENCE_KEY, inputList);
+        editText.setText("");
+      } else {
+        Toast.makeText(getContext(), getResources().getString(R.string.empty_string), Toast.LENGTH_LONG).show();
+      }
+    } else {
+      Toast.makeText(getContext(), getResources().getString(R.string.show_new), Toast.LENGTH_LONG).show();
+    }
+  }
+
 
   public static List<String> getRecentSearchItems() {
-    List<String> recentSearchItem = SharedPrefsManager.getInstance().getCollection("string", serviceListType);
+    List<String> recentSearchItem = SharedPrefsManager.getInstance().getCollection(Constants.PREFERENCE_KEY, serviceListType);
     return recentSearchItem;
   }
 

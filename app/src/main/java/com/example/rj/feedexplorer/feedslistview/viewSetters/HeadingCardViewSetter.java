@@ -1,4 +1,4 @@
-package com.example.rj.feedexplorer.feedslistview;
+package com.example.rj.feedexplorer.feedslistview.viewSetters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.rj.feedexplorer.R;
 import com.example.rj.feedexplorer.feedslistview.models.HeadingModel;
+import com.example.rj.feedexplorer.feedslistview.viewSetters.BaseFeedCardViewSetter;
 
 /**
  * Created by Rj on 5/30/16.

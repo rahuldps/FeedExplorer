@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
   <include
       android:id="@+id/toolbar"
       layout="@layout/layout_toolbar"/>
 
+  <LinearLayout
+      android:id="@+id/retry_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/toolbar"
+      android:gravity="center"
+      android:visibility="gone">
+
+    <Button
+        android:id="@+id/retry_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Retry"/>
+  </LinearLayout>
+
   <ListView
       android:id="@+id/feed_list"
       android:layout_width="match_parent"
+      android:background="@color/filters_bg"
       android:layout_height="match_parent"
+      android:layout_below="@id/toolbar"
       />
 
   <TextView
@@ -21,7 +38,7 @@
       android:gravity="center"
       android:text="@string/welcome_text"
       android:textSize="@dimen/dimen_20dp"
-      android:visibility="gone"
+      android:visibility="visible"
       />
 
-</LinearLayout>
+</RelativeLayout>

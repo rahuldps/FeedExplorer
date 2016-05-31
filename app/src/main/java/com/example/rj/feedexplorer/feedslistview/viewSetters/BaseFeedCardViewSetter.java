@@ -1,4 +1,4 @@
-package com.example.rj.feedexplorer.feedslistview;
+package com.example.rj.feedexplorer.feedslistview.viewSetters;
 
 import android.view.View;
 import android.view.ViewGroup;

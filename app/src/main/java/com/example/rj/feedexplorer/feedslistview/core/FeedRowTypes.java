@@ -1,4 +1,4 @@
-package com.example.rj.feedexplorer.feedslistview;
+package com.example.rj.feedexplorer.feedslistview.core;
 
 /**
  * Created by Rj on 5/30/16.

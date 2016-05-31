@@ -5,7 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.example.rj.feedexplorer.feedslistview.core.FeedRowTypeCardFactory;
+import com.example.rj.feedexplorer.feedslistview.core.FeedRowTypes;
 import com.example.rj.feedexplorer.feedslistview.models.BaseCardModel;
+import com.example.rj.feedexplorer.feedslistview.viewSetters.BaseFeedCardViewSetter;
 
 import java.util.List;
 

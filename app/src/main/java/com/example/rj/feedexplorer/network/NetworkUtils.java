@@ -1,7 +1,5 @@
 package com.example.rj.feedexplorer.network;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.OkHttpClient;
@@ -18,7 +16,6 @@ public class NetworkUtils {
 
   public static <T> ServerResponse<T> doGetCall(String url, Class<T> responseClass)
       throws Exception {
-    Log.w("url hahahha", " " + url);
     Response response = getResponseForGetCall(url);
     T responseObject = parseFromResponseToClass(response, responseClass);
 
