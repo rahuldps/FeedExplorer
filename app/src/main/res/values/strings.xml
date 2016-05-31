@@ -7,4 +7,5 @@
   <string name="watch_feed">"Watch Out Feeds"</string>
   <string name="show_new">"Show Something New"</string>
   <string name="empty_string">"Empty String Not Allowed"</string>
+  <string name="tap_to_change">Tap To Check Feed</string>
 </resources>
