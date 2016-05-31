@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentControll
 
         break;
       case IFragmentController.OPEN_FEED_EXPLORER_FRAGMENT:
-        handleFeedListViewFragment(input);
+        handleFeedListViewFragment(true, input);
 
         break;
 
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements IFragmentControll
 
   }
 
-  private void handleFeedListViewFragment(Object input) {
-    replaceFragmentInDefaultLayout(true, FeedExplorerFragment.newInstance((List<String>) input));
+  private void handleFeedListViewFragment(Boolean addToBackstack, Object input) {
+    replaceFragmentInDefaultLayout(addToBackstack, FeedExplorerFragment.newInstance((List<String>) input));
   }
 
 
