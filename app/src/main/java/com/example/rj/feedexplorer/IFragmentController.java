@@ -10,4 +10,6 @@ public interface IFragmentController {
 
 
   public void performOperation(final int operation, Object input);
+
+  void onBackPressed();
 }
