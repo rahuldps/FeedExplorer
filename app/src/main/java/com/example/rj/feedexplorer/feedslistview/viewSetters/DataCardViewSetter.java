@@ -1,4 +1,4 @@
-package com.example.rj.feedexplorer.feedslistview.models;
+package com.example.rj.feedexplorer.feedslistview.viewSetters;
 
 import android.content.Context;
 import android.text.Html;
@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.rj.feedexplorer.R;
-import com.example.rj.feedexplorer.feedslistview.BaseFeedCardViewSetter;
+import com.example.rj.feedexplorer.feedslistview.models.ItemModel;
+import com.example.rj.feedexplorer.feedslistview.viewSetters.BaseFeedCardViewSetter;
 
 /**
  * Created by Rj on 5/30/16.

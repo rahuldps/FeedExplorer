@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
 import com.example.rj.feedexplorer.feedslistview.FeedExplorerFragment;
-import com.example.rj.feedexplorer.userinput.HomeFragment;
+import com.example.rj.feedexplorer.userinputview.HomeFragment;
 
 import java.util.List;
 

@@ -2,4 +2,9 @@
   <string name="app_name">Feed Explorer</string>
   <string name="action_settings">Settings</string>
   <string name="welcome_text">Loading Feed</string>
+  <string name="add_words">"Add Keywords to Explore"</string>
+  <string name="enter_word">"Enter atleast one item"</string>
+  <string name="watch_feed">"Watch Out Feeds"</string>
+  <string name="show_new">"Show Something New"</string>
+  <string name="empty_string">"Empty String Not Allowed"</string>
 </resources>
